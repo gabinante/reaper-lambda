@@ -2,14 +2,17 @@
 
 This lambda:
 •Finds all instances in the selected region(s)
+
 •Ensures all instances are tagged with "expiration_date" of "never" or
 with an integer (epoch time).
+
 •Terminates any instances without an expiration_date
+
 •Terminates any instances past their expiration date
 
 ## Yes, this will blow up your AWS account if instances are not tagged!
 
-## notes
+## Notes
 •This may not work in exceptionally large AWS accounts. For this reason
 I've split it out by region - you may specify a smaller array of regions
 at the top. If your account is exceptionally large, it would be a very
