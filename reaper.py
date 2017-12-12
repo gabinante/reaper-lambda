@@ -1,5 +1,9 @@
 #### WARNING ####
-# This script iterates through all the specified regions and terminates any instances which do not have an expiration_date tag, or any instances wherein the expiration_date tag is before the current epoch. If you're not using epoch time, or if you haven't tagged your instances, this will blow up your whole AWS account. Consider this fair warning!
+# This script iterates through all the specified regions and terminates any instances
+# which do not have an expiration_date tag, or any instances wherein the expiration_date
+# tag is before the current epoch. If you're not using epoch time, or if you haven't
+# tagged your instances, this will blow up your whole AWS account.
+# Consider this fair warning!
 
 import boto3
 import logging
@@ -8,12 +12,16 @@ import time
 # Boto logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-regions = ['us-west-1']
-#regions = ['us-west-1', 'us-west-2', 'us-east-1', 'us-east-2', 'eu-west-1', 'eu-west-2', 'ap-northeast-1', 'ap-southeast-2']
+
+# This might need to be split across multiple regions if your AWS account is huge.
+regions = ['us-west-1', 'us-west-2', 'us-east-1', 'us-east-2', 'eu-west-1', 'eu-west-2', 'ap-northeast-1', 'ap-southeast-2']
 
 def lambda_handler(event, context):
 
     for each in regions:
+
+        ec2client = boto3.client('ec2', region_name='{}'.format(region))
+
         # Create empty arrays to avoid TypeErrors if any regions return empty
         all_instances = []
         all_instances.extend(grab_all_instances(each))
@@ -39,7 +47,8 @@ def lambda_handler(event, context):
         for instance in instances_to_delete:
             # TEST THIS FIRST! Uncomment the stop command if you're ready to go!
             print "terminating {}".format(instance)
-            #instance.stop()
+            #ec2client.terminate_instances(InstanceIds=[''.format(instance)])
+
 
 
 def grab_all_instances(region):
