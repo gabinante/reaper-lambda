@@ -1,6 +1,7 @@
 # Reaper Lambda
 
-This lambda:
+This lambda function:
+
 •Finds all instances in the selected region(s)
 
 •Ensures all instances are tagged with "expiration_date" of "never" or
