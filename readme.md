@@ -14,7 +14,7 @@ with an integer (epoch time).
 ## Yes, this will blow up your AWS account if instances are not tagged!
 
 ## Notes
-•This may not work in exceptionally large AWS accounts. For this reason
+•This may not work in large AWS accounts. For this reason
 I've split it out by region - you may specify a smaller array of regions
 at the top. If your account is exceptionally large, it would be a very
 minor effort to add an additional for loop that iterates over each VPC
