@@ -77,7 +77,8 @@ def list_instances_by_tag(tagkey, region):
     return instancelist_from_tag
 
 def check_expired_instances(region, instances_to_check):
-    # When passed a region and list of instance IDs, this will return a list of InstanceIDs that were found to be past their expiration date
+    # When passed a region and list of instance IDs, this will return a list of
+    # InstanceIDs that were found to be past their expiration date
 
     ec2client = boto3.client('ec2', region_name='{}'.format(region))
     expired_list = []
